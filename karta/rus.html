@@ -6,14 +6,15 @@
 	<style>
 		#map {position: absolute; top: 0; bottom: 0; left: 0; right: 0}
 	</style>
-	
+	<style> .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; } </style>
 	<title></title>
 </head>
 <body>
 	<div id ='map'></div>
 	<script type="text/javascript" src="crimleaf.js"></script>
 	<script type="text/javascript">
-		var map = L.map('map').setView([45.8, 25], 6);
+		var map = L.map('map').setView([45.3, 34.7], 8);
 		L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYW1vdWRhcmlhIiwiYSI6ImNrZmwyZGFlNzBiMnQyd3BzbmdnbnV1M2oifQ.abz_lS1kI6OaXQ3SA6sGCQ',
 		{attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
 			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -30,9 +31,9 @@
 			};
 
 		info.update = function (props) {
-			this._div.innerHTML = '<h4>US Population Density</h4>' +  (props ?
-				'<b>' + props.NAME + '</b><br />' + props.density + ' people / mi<sup>2</sup>'
-				: 'Hover over a state');
+			this._div.innerHTML = '<h4>Плотность населения в Республике Крым</h4>' +  (props ?
+				'<b>' + props.NAME + '</b><br />' + props.density + ' чел. / км<sup>2</sup>'
+				: 'Наведите на АТЕ');
 			};
 
 			info.addTo(map);
@@ -100,7 +101,7 @@
 		onEachFeature: onEachFeature
 	}).addTo(map);
 
-	map.attributionControl.addAttribution('Population data &copy; <a href="http://census.gov/">US Census Bureau</a>');
+	map.attributionControl.addAttribution('Статистика &copy; <a href="https://crimea.gks.ru">Крымстат</a>');
 
 
 	var legend = L.control({position: 'bottomright'});
@@ -126,7 +127,6 @@
 	};
 
 	legend.addTo(map);
-	</script>
 	</script>
 </body>
 </html>
