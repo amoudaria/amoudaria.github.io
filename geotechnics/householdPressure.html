@@ -1,0 +1,84 @@
+<HTML>
+    <head>
+        <title>Расчет бытового давления</title>
+    <style>
+         h4 {
+            width: 200px;
+            padding: 15px;
+        }
+        input[type=number] {
+            width: 80px;
+            padding: 5px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            margin: 10px auto;
+        }
+        .row {
+        display: inline-flex;
+        justify-content: flex-start;
+        }
+
+        .column {
+            flex: 50%;
+        }
+    </style>
+    </head>
+    <body>
+        <header>
+            <h4>Расчет бытового давления</h4>
+        </header>
+        <div class="row">
+            <div class="column">
+        <input onblur="findTotal()" type="number" placeholder="Плотность" name="density" class="input"/><br>
+        <input onblur="findTotal()" type="number" placeholder="Плотность" name="density" class="input"/><br>
+        <input onblur="findTotal()" type="number" placeholder="Плотность" name="density" class="input"/><br>
+        <input onblur="findTotal()" type="number" placeholder="Плотность" name="density" class="input"/><br>
+        <input onblur="findTotal()" type="number" placeholder="Плотность" name="density" class="input"/><br>
+        <input onblur="findTotal()" type="number" placeholder="Плотность" name="density" class="input"/><br>
+        <input onblur="findTotal()" type="number" placeholder="Плотность" name="density" class="input"/><br>
+        <input onblur="findTotal()" type="number" placeholder="Плотность" name="density" class="input"/><br>
+       </div>
+       
+    
+    <div class="column">
+        <input onblur="findTotal()" type="number" placeholder="Мощность слоя" name="volume" class="input"/><br>
+        <input onblur="findTotal()" type="number" placeholder="Мощность слоя" name="volume" class="input"/><br>
+        <input onblur="findTotal()" type="number" placeholder="Мощность слоя" name="volume" class="input"/><br>
+        <input onblur="findTotal()" type="number" placeholder="Мощность слоя" name="volume" class="input"/><br>
+        <input onblur="findTotal()" type="number" placeholder="Мощность слоя" name="volume" class="input"/><br>
+        <input onblur="findTotal()" type="number" placeholder="Мощность слоя" name="volume" class="input"/><br>
+        <input onblur="findTotal()" type="number" placeholder="Мощность слоя" name="volume" class="input"/><br>
+        <input onblur="findTotal()" type="number" placeholder="Мощность слоя" name="volume" class="input"/><br>
+    </div> 
+</div> 
+        <br><br>
+Бытовое давление : <input type="number" name="total" id="total"/>
+        <input type="button" onclick="myFunction()" value="Очистить все поля">
+    <script>  
+    function findTotal() {
+        var density = document.getElementsByName('density');
+        var volume = document.getElementsByName('volume');
+        var tot = 0;
+      
+        for (var i = 0; i < density.length; i++) {
+          if (parseInt(density[i].value))
+          tot += parseFloat(density[i].value) * parseFloat(volume[i].value) * 9.81;
+        }
+      
+        document.getElementById('total').value = tot.toFixed(2);
+      }
+    
+    
+    function myFunction() {
+        var inputElements = document.getElementsByTagName('input');
+
+        for (var i=0; i < inputElements.length; i++) {
+            if (inputElements[i].type == 'number') {
+            inputElements[i].value = '';
+    }
+}
+    }
+
+    </script>
+    </body> 
+</HTML>
