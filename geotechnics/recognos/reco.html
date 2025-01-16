@@ -28,6 +28,7 @@
     <script src=
  "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
      <script src="./fonts/PTSans-Regular-normal.js"></script>
   <script src="script.js"></script>
   <style>
@@ -42,35 +43,43 @@
     section {
       display: block;
     }
-    .myImg img { 
-        height: 100px; width: 200px; overflow: hidden; 
+
+    div[id^=myImg] img { 
+        width: 400px; overflow: hidden; 
+    }
+    .image-input {
+	    color: white;
+    }
+      [contenteditable=true]:empty:before {
+    content: attr(placeholder);
+    color:gray;
     }
     .text-box {
-        font-family: Amiri-Regular, "Amiri";
+        font-family: Arial, "Arial";
+    }
+    .text-form {
+      font-family: Arial, "Arial";
+        letter-spacing: 0.01px;
     }
   </style>
 </head>
 <body>
-<header>
-    <h4>Рекогносцировка</h4>
-</header>
-    <div id="divID">
+  <div id="divID">
+    <h4 class="text-box">Рекогносцировка</h4>
     <p class="text-box">Местоположение</p>
-        <span contenteditable="true" class="text-box">Type here...</span><br>
-        <input type="file" multiple/>
-        <div class="myImg"></div>
-        
+        <p><span class="text-form" contenteditable="true" placeholder="Опишите местоположение участка, характер его использования"></span></p>
+        <input type="file" class="image-input" data-id="myImg1" multiple/>
+        <div id="myImg1"></div>
 
-
-    <p>Геоморфология</p>
-        <input type="text" placeholder="" name="place" class="input"/><br>
-        <input type="file" multiple/>
-        <div class="myImg"></div>
+    <p class="text-box">Геоморфология</p>
+    <p><span class="text-form" contenteditable="true" placeholder="Расположение участка относительно геоморфологических элементов"></span></p>
+    <input type="file" class="image-input" data-id="myImg2" multiple/>
+        <div id="myImg2"></div>
 
     </div>
-        <div class="container">
-                     
+        <div class="container">  
             <input  type="button" value="Convert HTML to PDF"               
                     onclick="convertHTMLtoPDF()">
-</body>
+        </div>
+   </body>
 </html>
