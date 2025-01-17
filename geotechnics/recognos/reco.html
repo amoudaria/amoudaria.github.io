@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Рекогносцировка</title>
     <link
     class="jsbin"
     href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css"
@@ -45,7 +45,7 @@
     }
 
     div[id^=myImg] img { 
-        width: 400px; overflow: hidden; 
+        width: 350px; overflow: hidden; 
     }
     .image-input {
 	    color: white;
@@ -60,12 +60,17 @@
     .text-form {
       font-family: Arial, "Arial";
         letter-spacing: 0.01px;
+        display: inline;
+    }
+    #divID {
+      max-width: 600px;
     }
   </style>
 </head>
 <body>
   <div id="divID">
     <h4 class="text-box">Рекогносцировка</h4>
+    <p><span class="text-form" contenteditable="true" placeholder="Название объекта"></span></p>
     <p class="text-box">Местоположение</p>
         <p><span class="text-form" contenteditable="true" placeholder="Опишите местоположение участка, характер его использования"></span></p>
         <input type="file" class="image-input" data-id="myImg1" multiple/>
@@ -76,9 +81,20 @@
     <input type="file" class="image-input" data-id="myImg2" multiple/>
         <div id="myImg2"></div>
 
+    <p class="text-box">Геологическое строение</p>
+    <p><span class="text-form" contenteditable="true" placeholder="Выход на поверхность коренных грунтов, описание обнажений"></span></p>
+    <input type="file" class="image-input" data-id="myImg3" multiple/>
+        <div id="myImg3"></div>
+
+    <p class="text-box">Гидрография</p>
+    <p><span class="text-form" contenteditable="true" placeholder="Ближайшие реки и озера"></span></p>
+    <input type="file" class="image-input" data-id="myImg4" multiple/>
+        <div id="myImg4"></div>
+
+
     </div>
         <div class="container">  
-            <input  type="button" value="Convert HTML to PDF"               
+            <input  type="button" value="Преобразовать в pdf"               
                     onclick="convertHTMLtoPDF()">
         </div>
    </body>
