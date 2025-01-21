@@ -7,10 +7,9 @@ $(function() {
         reader.onload = function(e) {
           imageIsLoaded(e, imageDivID);
         }
-        $("#myImg1").append('<input type="text" name="amount"/>')
         reader.readAsDataURL(this.files[i]);
-
       }
+      $("#myImg1").append('<span class="text-form" contenteditable="true" placeholder="Опишите"></span>');
     }
   });
 });
