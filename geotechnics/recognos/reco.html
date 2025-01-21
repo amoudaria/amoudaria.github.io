@@ -29,6 +29,7 @@
  "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
      <script src="./fonts/PTSans-Regular-normal.js"></script>
   <script src="script.js"></script>
   <style>
@@ -43,9 +44,16 @@
     section {
       display: block;
     }
-
+    @media print {
+    body{
+        width: 21cm;
+        height: 29.7cm;
+        margin: 10mm 10mm 10mm 10mm; 
+        /* change the margins as you want them to be. */
+   } 
+  }
     div[id^=myImg] img { 
-        width: 350px; overflow: hidden; 
+        width: 350px; overflow: hidden; padding: 15px; 
     }
     .image-input {
 	    color: white;
@@ -55,10 +63,10 @@
     color:gray;
     }
     .text-box {
-        font-family: Arial, "Arial";
+        font-family: "PT Sans", "normal";
     }
     .text-form {
-      font-family: Arial, "Arial";
+      font-family: "PT Sans", "normal";
         letter-spacing: 0.01px;
         display: inline;
     }
@@ -73,9 +81,10 @@
     <p><span class="text-form" contenteditable="true" placeholder="Название объекта"></span></p>
     <p class="text-box">Местоположение</p>
         <p><span class="text-form" contenteditable="true" placeholder="Опишите местоположение участка, характер его использования"></span></p>
-        <input type="file" class="image-input" data-id="myImg1" accept="image/*" multiple/>
+        <input type="file" class="image-input" data-id="myImg1" accept="image/*"/>
         <div id="myImg1"></div>
-
+        <input type="text" class="input" data-id="myImg1"/>
+        
     <p class="text-box">Геоморфология</p>
     <p><span class="text-form" contenteditable="true" placeholder="Расположение участка относительно геоморфологических элементов"></span></p>
     <input type="file" class="image-input" data-id="myImg2" accept="image/*" multiple/>
@@ -90,12 +99,27 @@
     <p><span class="text-form" contenteditable="true" placeholder="Ближайшие реки и озера"></span></p>
     <input type="file" class="image-input" data-id="myImg4" accept="image/*" multiple/>
         <div id="myImg4"></div>
-
-
     </div>
-        <div class="container">  
-            <input  type="button" value="Преобразовать в pdf"               
-                    onclick="convertHTMLtoPDF()">
-        </div>
+       <button id="download">Download PDF</button>
+       <script>
+        document.getElementById('download').addEventListener('click', () => {
+  const element = document.getElementById('divID');
+  const options = {
+      margin: 1,
+      filename: 'invoice.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+      pagebreak: { mode: 'avoid-all'}
+  };
+
+  html2pdf()
+      .from(element)
+      .set(options)
+      .save();
+// New Promise-based usage:
+html2pdf().set(opt).from(element).save();
+});
+       </script> 
    </body>
 </html>
