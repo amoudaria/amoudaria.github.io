@@ -9,13 +9,13 @@ $(function() {
         }
         reader.readAsDataURL(this.files[i]);
       }
-      $("#myImg1").append('<span class="text-form" contenteditable="true" placeholder="Опишите"></span>');
     }
   });
 });
   
 function imageIsLoaded(e, imageDivID) {
   $("div#"+imageDivID).append('<img src=' + e.target.result + '>');
+  $("div#"+imageDivID).append('<p><span class="text-form" contenteditable="true" placeholder="Опишите"></span></p>');
 };
 
 
