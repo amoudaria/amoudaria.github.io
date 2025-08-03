@@ -1,0 +1,62 @@
+<HTML>
+    <head>
+        <title>Расчет плотности грунта в водонасыщенном состоянии</title>
+    <style>
+         h4 {
+            width: 200px;
+            padding: 15px;
+        }
+        input[type=number] {
+            width: 80px;
+            padding: 5px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            margin: 10px auto;
+        }
+        .row {
+        display: inline-flex;
+        justify-content: flex-start;
+        }
+
+        .column {
+            flex: 50%;
+        }
+    </style>
+    </head>
+    <body>
+        <header>
+            <h4>Расчет плотности грунта в водонасыщенном состоянии</h4>
+        </header>
+        <input onblur="findTotal()" type="number" placeholder="Плотность сухого грунта" name="density" id="dens"/><br>
+        <input onblur="findTotal()" type="number" placeholder="Коэффициент пористости" name="coef_e" id="coef_e"/><br>
+        <input onblur="findTotal()" type="number" placeholder="Плотность частиц грунта" name="particle_density" id="p_dens"/><br>
+        <br><br>
+Расчет : <input type="number" name="total" id="total"/>
+        <input type="button" onclick="myFunction()" value="Очистить все поля">
+    <script>  
+    function findTotal() {
+        var density = document.getElementById('dens');
+        var coef_e = document.getElementById('coef_e');
+        var particle_density = document.getElementById('p_dens');
+
+        let water_density = parseFloat(density.value) * (parseFloat(coef_e.value) + parseFloat(density.value) / parseFloat(particle_density.value));
+        if (parseFloat(density.value)) {
+            water_density = parseFloat(density.value) * (parseFloat(coef_e.value) + parseFloat(coef_e.value) / parseFloat(particle_density.value))
+        }
+        document.getElementById('total').value = water_density;
+      }
+    
+    
+    function myFunction() {
+        var inputElements = document.getElementsByTagName('input');
+
+        for (var i=0; i < inputElements.length; i++) {
+            if (inputElements[i].type == 'number') {
+            inputElements[i].value = '';
+    }
+}
+    }
+
+    </script>
+    </body> 
+</HTML>
